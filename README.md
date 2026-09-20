@@ -19,7 +19,7 @@ In this paper, we propose a global-to-local hierarchical representation learning
 
 ```bash
 pip install -r requirements.txt
-(we use /torch 1.10.0 /torchvision 0.11.0 /timm 1.0.11 /cuda 11.3 / 32G 3090 for training and evaluation.
+(we use /torch 1.10.0 /torchvision 0.11.0 /timm 1.0.11 /cuda 11.3 / 24G 3090 for training and evaluation.
 ```
 
 ### Prepare Datasets
@@ -104,8 +104,8 @@ python test.py --config_file configs/DukeMTMC/GLHR.yml MODEL.DEVICE_ID "('0')"  
     </tr>
     <tr>
       <td style="text-align:center;"><strong>VesselReID</strong></td>
-      <td style="text-align:center;">72.5</td>
-      <td style="text-align:center;">76.8</td>
+      <td style="text-align:center;">72.4</td>
+      <td style="text-align:center;">77.0</td>
       <td style="text-align:center;">89.9</td>
       <td style="text-align:center;">93.5</td>
       <td style="text-align:center;">
@@ -117,13 +117,13 @@ python test.py --config_file configs/DukeMTMC/GLHR.yml MODEL.DEVICE_ID "('0')"  
     </tr>
     <tr>
       <td style="text-align:center;"><strong>LSDV</strong></td>
-      <td style="text-align:center;">77.8</td>
-      <td style="text-align:center;">89.7</td>
-      <td style="text-align:center;">94.6</td>
-      <td style="text-align:center;">97.1</td>
-      <td style="text-align:center;">
+      <td style="text-align:center;">77.6</td>
+      <td style="text-align:center;">88.9</td>
+      <td style="text-align:center;">94.9</td>
+      <td style="text-align:center;">97.0</td>
+      <td style="text-align:center;"> ——
         <!--
-        <a href="https://drive.google.com/file/d/1YJkBiMb5oVBnO6GXYW3Y_hFkR-Pl5ikC/view?usp=sharing">test.txt</a>
+        <a href="https://drive.google.com/file/d/19-Rnba2eJSCryTj8VQfoLJfDWin3ox3l/view?usp=sharing">test.txt</a>
         -->
       </td>
     </tr>
