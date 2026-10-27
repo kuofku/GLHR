@@ -1,0 +1,146 @@
+2025-12-12 17:36:47,977 transreid INFO: Namespace(config_file='configs/DukeMTMC/biformer_25_10_08_sgd_3w_ori_warship_fusion_twostage_rerank_20_06_01.yml', opts=['MODEL.DEVICE_ID', "('1')"])
+2025-12-12 17:36:47,978 transreid INFO: Loaded configuration file configs/DukeMTMC/biformer_25_10_08_sgd_3w_ori_warship_fusion_twostage_rerank_20_06_01.yml
+2025-12-12 17:36:47,978 transreid INFO: 
+MODEL:
+  PRETRAIN_CHOICE: 'imagenet'
+  PRETRAIN_PATH: '/server02/reidcode/Biformer-reid_copy/pretrained/biformer_base_best.pth'
+  METRIC_LOSS_TYPE: 'triplet'
+  IF_LABELSMOOTH: 'off'
+  IF_WITH_CENTER: 'no'
+  NAME: 'transformer'
+  NO_MARGIN: True
+  DEVICE_ID: ('0')
+  TRANSFORMER_TYPE: 'biformer_base'
+  STRIDE_SIZE: [12, 12]
+
+INPUT:
+  SIZE_TRAIN: [384, 384]
+  SIZE_TEST: [384, 384]
+  PROB: 0.5 # random horizontal flip
+  RE_PROB: 0.5 # random erasing
+  PADDING: 10
+  PIXEL_MEAN: [0.5, 0.5, 0.5]
+  PIXEL_STD: [0.5, 0.5, 0.5]
+
+DATASETS:
+  NAMES: ('dukemtmc')
+  ROOT_DIR: ('/server02/first_paper/dukevessel_dataset/ReidDataset/warshipreid')
+
+DATALOADER:
+  SAMPLER: 'softmax_triplet'
+  NUM_INSTANCE: 4
+  NUM_WORKERS: 8
+
+SOLVER:
+  OPTIMIZER_NAME: 'SGD' #AdamW
+  MAX_EPOCHS: 200
+  BASE_LR: 0.0005 #3e-4
+  IMS_PER_BATCH: 8
+  WARMUP_METHOD: 'linear'
+  LARGE_FC_LR: False
+  CHECKPOINT_PERIOD: 10
+  LOG_PERIOD: 10
+  EVAL_PERIOD: 10
+  WEIGHT_DECAY:  1e-4
+  WEIGHT_DECAY_BIAS: 1e-4
+  BIAS_LR_FACTOR: 2
+  # SCHEDULER: "cosine"
+
+TEST:
+  EVAL: True
+  IMS_PER_BATCH: 8
+  WEIGHT: '/server02/reidcode/Biformer-reid_copy/logs/biformer_25_10_08_sgd_3w_ori_warship_fusion_twostage_rerank_20_06_01/transformer_30.pth'
+  NECK_FEAT: 'before'
+  FEAT_NORM: 'yes'
+
+OUTPUT_DIR: './logs/biformer_25_10_08_sgd_3w_ori_warship_fusion_twostage_rerank_20_06_01' #use local reranking
+
+
+
+2025-12-12 17:36:47,978 transreid INFO: Running with config:
+DATALOADER:
+  NUM_INSTANCE: 4
+  NUM_WORKERS: 8
+  SAMPLER: softmax_triplet
+DATASETS:
+  NAMES: dukemtmc
+  ROOT_DIR: /server02/first_paper/dukevessel_dataset/ReidDataset/warshipreid
+INPUT:
+  PADDING: 10
+  PIXEL_MEAN: [0.5, 0.5, 0.5]
+  PIXEL_STD: [0.5, 0.5, 0.5]
+  PROB: 0.5
+  RE_PROB: 0.5
+  SIZE_TEST: [384, 384]
+  SIZE_TRAIN: [384, 384]
+MODEL:
+  ATT_DROP_RATE: 0.0
+  COS_LAYER: False
+  DEVICE: cuda
+  DEVICE_ID: 1
+  DEVIDE_LENGTH: 4
+  DIST_TRAIN: False
+  DROP_OUT: 0.0
+  DROP_PATH: 0.1
+  ID_LOSS_TYPE: softmax
+  ID_LOSS_WEIGHT: 1.0
+  IF_LABELSMOOTH: off
+  IF_WITH_CENTER: no
+  JPM: False
+  LAST_STRIDE: 1
+  METRIC_LOSS_TYPE: triplet
+  NAME: transformer
+  NECK: bnneck
+  NO_MARGIN: True
+  PRETRAIN_CHOICE: imagenet
+  PRETRAIN_PATH: /server02/reidcode/Biformer-reid_copy/pretrained/biformer_base_best.pth
+  RE_ARRANGE: True
+  SHIFT_NUM: 5
+  SHUFFLE_GROUP: 2
+  SIE_CAMERA: False
+  SIE_COE: 3.0
+  SIE_VIEW: False
+  STRIDE_SIZE: [12, 12]
+  TRANSFORMER_TYPE: biformer_base
+  TRIPLET_LOSS_WEIGHT: 1.0
+  VCLASS_LOSS_WEIGHT: 0.0
+OUTPUT_DIR: ./logs/biformer_25_10_08_sgd_3w_ori_warship_fusion_twostage_rerank_20_06_01
+SOLVER:
+  BASE_LR: 0.0005
+  BIAS_LR_FACTOR: 2
+  CENTER_LOSS_WEIGHT: 0.0005
+  CENTER_LR: 0.5
+  CHECKPOINT_PERIOD: 10
+  COSINE_MARGIN: 0.5
+  COSINE_SCALE: 30
+  EVAL_PERIOD: 10
+  GAMMA: 0.1
+  IMS_PER_BATCH: 8
+  LARGE_FC_LR: False
+  LOG_PERIOD: 10
+  MARGIN: 0.3
+  MAX_EPOCHS: 200
+  MOMENTUM: 0.9
+  OPTIMIZER_NAME: SGD
+  SEED: 1234
+  STEPS: (40, 70)
+  WARMUP_EPOCHS: 5
+  WARMUP_FACTOR: 0.01
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0001
+  WEIGHT_DECAY_BIAS: 0.0001
+TEST:
+  DIST_MAT: dist_mat.npy
+  EVAL: True
+  FEAT_NORM: yes
+  IMS_PER_BATCH: 8
+  NECK_FEAT: before
+  RE_RANKING: False
+  WEIGHT: /server02/reidcode/Biformer-reid_copy/logs/biformer_25_10_08_sgd_3w_ori_warship_fusion_twostage_rerank_20_06_01/transformer_30.pth
+2025-12-12 17:36:54,333 transreid.test INFO: Enter inferencing
+2025-12-12 17:38:19,786 transreid.test INFO: === All Reranking Results ===
+2025-12-12 17:38:19,787 transreid.test INFO: Validation Results 
+2025-12-12 17:38:19,787 transreid.test INFO: mAP: 98.6%
+2025-12-12 17:38:19,787 transreid.test INFO: CMC curve, Rank-1  :100.0%
+2025-12-12 17:38:19,787 transreid.test INFO: CMC curve, Rank-5  :100.0%
+2025-12-12 17:38:19,787 transreid.test INFO: CMC curve, Rank-10 :100.0%
