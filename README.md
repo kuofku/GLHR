@@ -26,7 +26,7 @@ pip install -r requirements.txt
 mkdir data
 ```
 
-Download the vessel datasets [WarshipReID](https://drive.google.com/file/d/0B8-rUzbwVRk0c054eEozWG9COHM/view), [VesselReID](https://arxiv.org/abs/1711.08565), Then unzip them and rename them under the directory like:
+Download the vessel datasets [WarshipReID](https://github.com/scott0o0/Warships-Reid), [VesselReID](https://github.com/vsislab/VesselReID), Then unzip them and rename them under the directory like:
 (We adopt the vesselreid normal split of the VesselReID benchmark. You can also use your own dataset and organize it into this format.)
 
 ```
